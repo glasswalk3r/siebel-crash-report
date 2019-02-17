@@ -89,10 +89,20 @@ pydoc -w crash_monitor
  - Linux (all setup is specific to Linux).
  - GNU GDB.
 
+## Running tests
+
+In order to run tests with `pytest`, setup the `PYTHONPATH` environment
+variable first:
+
+```
+$ export PYTHONPATH="$PWD/src"
+$ pytest
+```
+
 ## Known issues
 
 This script was created to run on Python 2.4 (I know, very old but that's what
 we got back in the day) but should work without problems with Python 2.7.
 
-Since Python 2.7 is going out of support soon, this script will be need to be
-rewriten to Python 3.x.
+Python 3.X **should** be supported. Use `requirements-3x.txt` file to install
+modules through venv.

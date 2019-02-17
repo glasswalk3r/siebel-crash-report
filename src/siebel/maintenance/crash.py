@@ -1,3 +1,4 @@
+from __future__ import print_function
 import re
 import codecs
 import os
@@ -8,12 +9,20 @@ import traceback
 from stat import S_ISDIR
 
 
-def dec2bin(s):
-    """Back port of bin function to Python 2.4."""
-    if s <= 1:
-        return str(s)
+def dec2bin(thread_id):
+    """Convert a integer to binary depending on Python version."""
+    if sys.version_info.major == 2 and sys.version_info.minor == 4:
+        return dec2bin_backport(id)
     else:
-        return dec2bin(s >> 1) + str(s & 1)
+        return (bin(thread_id)).replace('0b', '')
+
+
+def dec2bin_backport(thread_id):
+    """Back port of bin function to Python 2.4."""
+    if thread_id <= 1:
+        return str(thread_id)
+    else:
+        return dec2bin_backport(thread_id >> 1) + str(thread_id & 1)
 
 
 def fix_thread_id(thread_id):
@@ -102,8 +111,8 @@ def manage_comp_alias(crashes, pid, default_log, archive_dir, crash_dir,
             comp_alias = find_comp_alias(pid, default_log)
 
             if comp_alias is None:
-                print "\tCouldn't find the pid %s in the enterprise log \
-file." % (str(pid))
+                print("\tCouldn't find the pid %s in the enterprise log \
+file." % (str(pid)))
                 last_log = os.path.join(find_last(archive_dir),
                                         enterprise_log_file)
                 comp_alias = find_comp_alias(pid, last_log)
@@ -115,21 +124,21 @@ file." % (str(pid))
                 shutil.copy2(default_log, crash_dir)
 
             if comp_alias is None:
-                print "\tAll attempts to locate the component alias for %s \
-failed." % (str(pid))
+                print("\tAll attempts to locate the component alias for %s \
+failed." % (str(pid)))
             else:
                 crashes[pid]['comp_alias'] = comp_alias
     except:  # NOQA
-        print "Unexpected error!"
+        print("Unexpected error!")
         all_info = sys.exc_info()
         if not all_info[0] is None:
-            print 'exception type is %s' % (all_info[0])
+            print('exception type is %s' % (all_info[0]))
         if not all_info[1] is None:
-            print 'exception value is %s' % (all_info[1])
+            print('exception value is %s' % (all_info[1]))
         if not all_info[2] is None:
-            print 'traceback: '
-            print traceback.print_exception(all_info[0], all_info[1],
-                                            all_info[2])
+            print('traceback: ')
+            print(traceback.print_exception(all_info[0], all_info[1],
+                                            all_info[2]))
         # to be sure that no circular references will hang around
         all_info = ()
 
@@ -140,8 +149,8 @@ def find_comp_alias(pid, enterprise_log):
     Expects as parameter the PID of the process and the complete path to the
     Siebel Enterprise log file.
     """
-    print '\tTrying to locate the component alias with PID %s in the Siebel \
-Enterprise log file %s... ' % (str(pid), enterprise_log),
+    print('\tTrying to locate the component alias with PID %s in the Siebel \
+Enterprise log file %s... ' % (str(pid), enterprise_log), end='')
 
     if (os.path.exists(enterprise_log)):
         regex = re.compile(r'.*(Process\s' + str(pid) +
@@ -156,18 +165,18 @@ Enterprise log file %s... ' % (str(pid), enterprise_log),
                 log.close()
 
                 if (len(fields) >= 6):
-                    print 'found it.'
+                    print('found it.')
                     return fields[6]
                 else:
-                    print 'invalid line that matches the regex of process \
-failure: "line".'
+                    print('invalid line that matches the regex of process \
+failure: "line".')
                     return None
 
         log.close()
-        print 'not found'
+        print('not found')
     else:
-        print 'file %s does not exists, cannot search for pid.' % (
-            enterprise_log)
+        print('file %s does not exists, cannot search for pid.' % (
+            enterprise_log))
 
     return None
 
@@ -203,8 +212,8 @@ def find_logs(log_dir, regex, crash_dir, pid, thread_num):
                 header_fields = header.split(' ')
 
                 if (not(len(header_fields) >= 19)):
-                    print '%s does not have a valid header line: "%s"' % (
-                        log_filename, header)
+                    print('%s does not have a valid header line: "%s"' % (
+                        log_filename, header))
                 else:
                     if ((header_fields[13] == pid) and (
                             header_fields[15] == thread_num)):
@@ -212,11 +221,11 @@ def find_logs(log_dir, regex, crash_dir, pid, thread_num):
                         shutil.copy2(original, (os.path.join(
                             crash_dir, log_filename)))
 
-            except UnicodeEncodeError, inst:
-                print '\n\tAn error occurred when reading "%s": %s' % (
-                    original, str(inst))
+            except UnicodeEncodeError as inst:
+                print('\n\tAn error occurred when reading "%s": %s' % (
+                    original, str(inst)))
             except:  # NOQA
-                print "Unexpected error:", sys.exc_info()[0]
+                print('Unexpected error: ', sys.exc_info()[0])
 
     return logs_counter
 
@@ -264,7 +273,8 @@ def signal_map():
 
 def find_last(log_archive_dir):
     # returns the last created directory
-    print 'Locating newest archive directory under "%s"...' % (log_archive_dir)
+    print('Locating newest archive directory under "%s"...' % (
+        log_archive_dir))
     archives = {}
 
     for archive_dir in os.listdir(log_archive_dir):
