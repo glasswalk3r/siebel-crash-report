@@ -3,7 +3,7 @@ import re
 import codecs
 import os
 import sys
-from iniparse import BasicConfig
+from iniparse import INIConfig
 import shutil
 import traceback
 from stat import S_ISDIR
@@ -272,7 +272,11 @@ def signal_map():
 
 
 def find_last(log_archive_dir):
-    # returns the last created directory
+    """Return the last created directory.
+
+    Returns the last created directory name inside the log archive directory.
+    Expects as parameter the complete path to the log archive directory.
+    """
     print('Locating newest archive directory under "%s"...' % (
         log_archive_dir))
     archives = {}
@@ -320,8 +324,6 @@ def readConfig():
     should be removed or not. Accept the values "yes" and "no". Log files will
     not be removed at all.
     """
-    ini = BasicConfig()
     location = os.path.join(os.environ['HOME'], '.crash.ini')
-    with (open(location, mode='r')) as fp:
-        ini.readfp(fp)
+    ini = INIConfig(file(location))
     return ini

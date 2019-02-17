@@ -14,6 +14,7 @@ crashes information into a nice report",
         'simplejson>=3.16.0',
         'iniparse>=0.4'
     ],
+    scripts=['bin/crash_reporter'],
     keywords="Siebel crash core dump component",
     classifiers=[
         "Programming Language :: Python :: 2",

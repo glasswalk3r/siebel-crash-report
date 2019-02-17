@@ -72,13 +72,13 @@ The script crash_monitor has also an on-line documentation. You can check it
 with:
 
 ```
-pydoc crash_monitor
+$ pydoc siebel.maintenance.crash
 ```
 
 To generate HTML documentation for this module issue the command:
 
 ```
-pydoc -w crash_monitor
+$ pydoc -w siebel.maintenance.crash
 ```
 
 ## Requirements
@@ -88,6 +88,44 @@ pydoc -w crash_monitor
  - Siebel Server binaries.
  - Linux (all setup is specific to Linux).
  - GNU GDB.
+
+## How to use
+
+You should be able to install this program with pip:
+
+```
+$ pip install crash_reporter
+```
+
+Then you will need to configure the crash_reporter program and finally run it
+against your Siebel Enterprise.
+
+### Configuration
+
+You must a INI configuration file located at your home directory as `$HOME/.crash.ini`.
+
+Here is a sample INI configuration file:
+
+```Ini
+[main]
+;location of Siebel binaries
+bin_dir = /server/81/siebsrvr/bin
+; location of where the crashes information will be stored. A subdirectory will be created there with filename "crash_dir" appended with datetime.date.today string
+crash_dir = /server/crash_dir
+; location of the Siebel Enterprise log files
+enterprise_log_dir = /server/foobar/siebel/81/siebsrvr/enterprises/foobar/myserver/log
+; location of Siebel Enterprise log archives
+log_archive = /server/foobar/siebel/81/siebsrvr/enterprises/foobar/myserver/logarchive
+; the file name of the Siebel Enterprise log file (only the file name, not the complete path)
+enterprise_log_file = foobar.myserver.log
+clean_files = yes
+```
+
+Further information can be checked on the module documentation:
+
+```
+$ pydoc siebel.maintenance.crash.readConfig
+```
 
 ## Running tests
 
