@@ -1,4 +1,4 @@
-from setuptools import setup, find_namespace_packages
+from setuptools import setup
 
 setup(
     name="siebel-crash-report",
@@ -9,7 +9,6 @@ setup(
 crashes information into a nice report",
     url="https://github.com/glasswalk3r/siebel-crash-report",
     package_dir={'': 'src'},
-    packages=find_namespace_packages(where="src"),
     install_requires=[
         'simplejson>=3.16.0',
         'iniparse>=0.4'
