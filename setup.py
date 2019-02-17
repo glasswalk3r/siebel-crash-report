@@ -1,23 +1,29 @@
-from setuptools import setup, find_namespace_packages
+from setuptools import setup, find_packages
+
+with open('README.md', 'r') as fh:
+    long_description = fh.read()
 
 setup(
     name="siebel-crash-report",
-    version="0.0.1",
+    version="0.0.9",
     author="Alceu Rodrigues de Freitas Junior",
-    author_email="arfreitas@cpan.org",
-    description="Python script that search and aggregates Siebel component \
-crashes information into a nice report",
+    author_email="glasswalk3r@yahoo.com.br",
     url="https://github.com/glasswalk3r/siebel-crash-report",
+    packages=find_packages('src'),
     package_dir={'': 'src'},
-    packages=find_namespace_packages(where="src"),
     install_requires=[
-        'simplejson>=3.16.0',
+        'simplejson>=3.13.2',
         'iniparse>=0.4'
     ],
+    description='Searchs and aggregates Siebel component crashes information \
+into a nice report.',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     scripts=['bin/crash_reporter'],
     keywords="Siebel crash core dump component",
     classifiers=[
         "Programming Language :: Python :: 2",
+        'Programming Language :: Python :: 3',
         "Operating System :: POSIX :: Linux",
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

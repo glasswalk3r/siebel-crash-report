@@ -325,5 +325,7 @@ def readConfig():
     not be removed at all.
     """
     location = os.path.join(os.environ['HOME'], '.crash.ini')
-    ini = INIConfig(file(location))
+    fh = open(location, 'r')
+    ini = INIConfig(fh)
+    fh.close()
     return ini

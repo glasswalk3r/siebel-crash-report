@@ -1,6 +1,5 @@
 # siebel-crash-report
-Python script that search and aggregates Siebel component crashes information
-into a nice report.
+Python project that searchs and aggregates Siebel component crashes information into a nice report.
 
 ## Features
 
@@ -81,20 +80,21 @@ To generate HTML documentation for this module issue the command:
 $ pydoc -w siebel.maintenance.crash
 ```
 
-## Requirements
+## How to use
 
- - Python 2.X.
- - Python modules (see requirements.txt).
- - Siebel Server binaries.
+### Requirements
+
+ - Python 2.X or 3.x.
+ - Siebel Server binaries and configuration in place.
  - Linux (all setup is specific to Linux).
  - GNU GDB.
 
-## How to use
+### Install
 
-You should be able to install this program with pip:
+You should be able to install this program with `pip`:
 
 ```
-$ pip install crash_reporter
+$ pip install siebel-crash-report
 ```
 
 Then you will need to configure the crash_reporter program and finally run it
@@ -102,7 +102,8 @@ against your Siebel Enterprise.
 
 ### Configuration
 
-You must a INI configuration file located at your home directory as `$HOME/.crash.ini`.
+You must have a INI configuration file located at your home directory as
+`$HOME/.crash.ini`.
 
 Here is a sample INI configuration file:
 
@@ -127,7 +128,20 @@ Further information can be checked on the module documentation:
 $ pydoc siebel.maintenance.crash.readConfig
 ```
 
-## Running tests
+## Development
+
+If you want to get involved with this project develoment, here are some very
+basic details to start.
+
+### Requirements
+
+ - Python 2.X and 3.x.
+ - Python modules (see `requirements.txt` and `requirements-3x.txt`).
+ - Siebel Server binaries and configuration in place.
+ - Linux (all setup is specific to Linux).
+ - GNU GDB.
+
+### Running tests
 
 In order to run tests with `pytest`, setup the `PYTHONPATH` environment
 variable first:
@@ -137,7 +151,7 @@ $ export PYTHONPATH="$PWD/src"
 $ pytest
 ```
 
-## Known issues
+### Known issues
 
 This script was created to run on Python 2.4 (I know, very old but that's what
 we got back in the day) but should work without problems with Python 2.7.
