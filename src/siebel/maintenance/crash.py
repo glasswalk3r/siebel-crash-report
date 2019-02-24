@@ -3,7 +3,7 @@ import re
 import codecs
 import os
 import sys
-from iniparse import INIConfig
+from yaml import load
 import shutil
 import traceback
 from stat import S_ISDIR
@@ -50,21 +50,6 @@ def fix_thread_id(thread_id):
         return ("-" + str(temp))
     else:
         return thread_id
-
-
-def is_to_rem(ini):
-    """Check if crash related files are expected to be removed or not.
-    Expects as parameter an instance of iniparse.BasicConfig.
-    Returns true (if "yes"), false (if "no") or raise an exception (for any
-    value different of those two).
-    """
-    if ini.clean_files == 'yes':
-        return True
-    elif ini.clean_files == 'no':
-        return False
-    else:
-        raise ValueError(
-            'Invalid file for clean_files: (%s)' % ini.clean_files)
 
 
 def find_thread_id(filename):
@@ -298,34 +283,16 @@ def readConfig():
 
     Configuration file details
 
-    This script uses a INI file to providing information of where to search for
-    crash files and execute the expected
-    steps once one if found.
+    This script uses a YAML file to providing information of where to search
+    for crash files and execute the expected steps once one is found.
     The configuration file is expected to the located at the user's home
-    directory with the filename equal to ".crash_reporter.ini".
-    Details on INI format can be checked by reading the standard iniparse
-    module documentation.
+    directory ($HOME) with the filename equal to ".crash_reporter.yaml".
 
-    The expected keys and values are described below. You don't need to use
-    namespaces in the INI file, neither it is expected to.
-
-    - crash_archive: expects a full path of a directory that will be used to
-    store the crash(es) information. Inside this directory, subdirectories will
-    be created with the name corresponding to the string returned by today()
-    method from datetime.date Python standard module and respective files will
-    be located there.
-    - siebel_bin: the complete path to the Siebel Server bin directory. Also,
-    where the crash files will be located.
-    - ent_log_dir: the complete path to the Siebel Enterprise log directory
-    - ent_log_file: the complete path to the current Siebel Enterprise log file
-    - log_archive: the complete path to the directory where the log files were
-    rotated
-    - clean_files: defines if the related files (core, FDR and crash.txt)
-    should be removed or not. Accept the values "yes" and "no". Log files will
-    not be removed at all.
+    Please refer to the comments on the provided example YAML for
+    configuration.
     """
-    location = os.path.join(os.environ['HOME'], '.crash.ini')
+    location = os.path.join(os.environ['HOME'], '.crash_report.yaml')
     fh = open(location, 'r')
-    ini = INIConfig(fh)
+    cfg = load(fh)
     fh.close()
-    return ini
+    return cfg

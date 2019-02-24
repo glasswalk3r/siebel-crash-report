@@ -10,7 +10,7 @@ import os.path
 import shutil
 import re
 from subprocess import call, Popen, PIPE
-from siebel.maintenance.crash import fix_thread_id, is_to_rem
+from siebel.maintenance.crash import fix_thread_id
 from siebel.maintenance.crash import find_thread_id, manage_comp_alias
 from siebel.maintenance.crash import find_logs, find_last
 from siebel.maintenance.crash import signal_map, readConfig
@@ -67,12 +67,12 @@ signal.signal(signal.SIGINT, signal_handler)
 # TODO: add try/catch
 
 cfg = readConfig()
-bin_dir = cfg.main.bin_dir
+bin_dir = cfg['server']['paths']['bin_dir']
 today = datetime.date.today()
-crash_dir = cfg.main.crash_dir
-enterprise_log_dir = cfg.main.enterprise_log_dir
-log_archive = cfg.main.log_archive
-enterprise_log_file = cfg.main.enterprise_log_file
+crash_dir = cfg['server']['paths']['crash_dir']
+enterprise_log_dir = cfg['server']['paths']['enterprise_log_dir']
+log_archive = cfg['server']['paths']['log_archive']
+enterprise_log_file = cfg['server']['files']['enterprise_log_file']
 enterprise_log = os.path.join(enterprise_log_dir, enterprise_log_file)
 crashes = {}
 introduction = """Greetings,
@@ -156,7 +156,7 @@ for filename in os.listdir(bin_dir):
             else:
                 print('done.')
 
-            if is_to_rem(cfg):
+            if cfg['clean_files']:
                 os.remove(core_path)
 
             os.remove(gdb_cmd_filename)
@@ -197,7 +197,7 @@ for filename in os.listdir(bin_dir):
             print(' '.join(('\tsarmanalizer execution failed with code',
                             str(ret))))
 
-        if is_to_rem(cfg):
+        if cfg['clean_files']:
             os.remove(fdr_path)
 
         thread_id = find_thread_id(csv_file)
@@ -219,7 +219,7 @@ thread of process", str(pid), 'by reading the export FDR information')))
         if (not(os.path.isdir(crash_dir))):
             os.mkdir(crash_dir)
 
-        if is_to_rem(cfg):
+        if cfg['clean_files']:
             os.rename((os.path.join(bin_dir, filename)),
                       (os.path.join(crash_dir, filename)))
         else:

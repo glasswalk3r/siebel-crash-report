@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name="siebel-crash-report",
-    version="0.0.9",
+    version="0.0.1",
     author="Alceu Rodrigues de Freitas Junior",
     author_email="glasswalk3r@yahoo.com.br",
     url="https://github.com/glasswalk3r/siebel-crash-report",
@@ -13,7 +13,7 @@ setup(
     package_dir={'': 'src'},
     install_requires=[
         'simplejson>=3.13.2',
-        'iniparse>=0.4'
+        'pyyaml>=3.13'
     ],
     description='Searchs and aggregates Siebel component crashes information \
 into a nice report.',
