@@ -1,4 +1,4 @@
-# siebel-crash-report
+# siebel-crash-report [![Travis](https://travis-ci.org/glasswalk3r/siebel-crash-report.svg?branch=master)]
 Python project that searchs and aggregates Siebel component crashes information into a nice report.
 
 ## Features
@@ -84,7 +84,9 @@ $ pydoc -w siebel.maintenance.crash
 
 ### Requirements
 
- - Python 2.X or 3.x.
+ - Python 2.X or 3.x: checkout
+ [Travis CI](https://travis-ci.org/glasswalk3r/siebel-crash-report/branches) for
+ up to date information about the support Python versions.
  - Siebel Server binaries and configuration in place.
  - Linux (all setup is specific to Linux).
  - GNU GDB.
