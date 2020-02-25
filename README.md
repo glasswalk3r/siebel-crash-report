@@ -120,8 +120,8 @@ basic details to start.
 
 ### Requirements
 
- - Python 2.X and 3.x.
- - Python modules (see `requirements.txt` and `requirements-3x.txt`).
+ - Python 2.X or 3.x.
+ - Python modules (see `requirements.txt`).
  - Siebel Server binaries and configuration in place.
  - Linux (all setup is specific to Linux).
  - GNU GDB.
