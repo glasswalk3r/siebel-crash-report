@@ -122,7 +122,9 @@ basic details to start.
 
 ### Requirements
 
- - Python 2.X or 3.x.
+ - Python 2.X or 3.x, checkout
+ [Travis CI](https://travis-ci.org/glasswalk3r/siebel-crash-report/branches) for
+ up to date information about the support Python versions.
  - Python modules (see `requirements.txt`).
  - Siebel Server binaries and configuration in place.
  - Linux (all setup is specific to Linux).
@@ -137,11 +139,3 @@ variable first:
 $ export PYTHONPATH="$PWD/src"
 $ pytest
 ```
-
-### Known issues
-
-This script was created to run on Python 2.4 (I know, very old but that's what
-we got back in the day) but should work without problems with Python 2.7.
-
-Python 3.X **should** be supported. Use `requirements-3x.txt` file to install
-modules through venv.
