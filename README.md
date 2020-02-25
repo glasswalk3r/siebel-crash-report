@@ -1,4 +1,4 @@
-# siebel-crash-report [![Travis](https://travis-ci.org/glasswalk3r/siebel-crash-report.svg?branch=master)]
+# siebel-crash-report [![Travis](https://img.shields.io/travis/glasswalk3r/siebel-crash-report.svg)](https://travis-ci.org/glasswalk3r/siebel-crash-report/branches)
 Python project that searchs and aggregates Siebel component crashes information into a nice report.
 
 ## Features
