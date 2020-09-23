@@ -1,5 +1,6 @@
 # siebel-crash-report [![Travis](https://img.shields.io/travis/glasswalk3r/siebel-crash-report.svg)](https://travis-ci.org/glasswalk3r/siebel-crash-report/branches)
-Python project that searchs and aggregates Siebel component crashes information into a nice report.
+Python project that searchs and aggregates Siebel component crashes information
+into a nice report.
 
 ## Features
 
@@ -9,17 +10,17 @@ component crash to send the report to Oracle support.
 Information is searched and retrieve from the following sources:
 
 - the memory dump (`core.dump` files) itself using GDB.
-- FDR files with sarmanalyzer.
+- FDR files with `sarmanalyzer`.
 - Siebel enterprise log files.
 - correlate information from the FDR with the enterprise log file.
 - a summary JSON report.
 
-The CSV (from sarmanalyzer) and the GDB output as text are created as necessary
-in the directory defined by the `crash_dir` entry in the `crash_reporter.ini`
-configuration file, together with the summary JSON report and a copy of the
-`crash.txt`.
+The CSV (from `sarmanalyzer`) and the GDB output as text are created as
+necessary in the directory defined by the `crash_dir` entry in the
+`crash_reporter.ini` configuration file, together with the summary JSON report
+and a copy of the `crash.txt`.
 
-All the information (but the CSV and GDB output) is printed to `STDOUT`, so
+All the information (but the CSV and `gdb` output) is printed to `STDOUT`, so
 it's to run it together in a cron job and pipe it to `mail` program.
 
 Here is an example of the JSON report (two crashes identified):
@@ -59,15 +60,14 @@ Here is an example of the JSON report (two crashes identified):
 }
 ```
 
-The core and FDR files might be removed right after (see the configuration file)
+The core and FDR files might be removed (see the configuration file) right after
 the analysis is complete.
 
 This script will work on Linux only. It is expected that the `gdb` program (to
-  extract the core dumps backtrace) and the `iniparse` (available as RPM
-    package on RedHat, CentOS and Oracle Enterprise Linux) Python module are
-    installed.
+extract the core dumps backtrace) and the `iniparse` (available as RPM package
+on RedHat, CentOS and Oracle Enterprise Linux) Python module are installed.
 
-The script crash_monitor has also an on-line documentation. You can check it
+The script `crash_monitor` has also an on-line documentation. You can check it
 with:
 
 ```
@@ -99,7 +99,7 @@ You should be able to install this program with `pip`:
 $ pip install siebel-crash-report
 ```
 
-Then you will need to configure the crash_reporter program and finally run it
+Then you will need to configure the `crash_reporter` program and finally run it
 against your Siebel Enterprise.
 
 ### Configuration
@@ -117,18 +117,12 @@ $ pydoc siebel.maintenance.crash.readConfig
 
 ## Development
 
-If you want to get involved with this project develoment, here are some very
+If you want to get involved with this project development, here are some very
 basic details to start.
 
 ### Requirements
 
- - Python 2.X or 3.x, checkout
- [Travis CI](https://travis-ci.org/glasswalk3r/siebel-crash-report/branches) for
- up to date information about the support Python versions.
- - Python modules (see `requirements.txt`).
- - Siebel Server binaries and configuration in place.
- - Linux (all setup is specific to Linux).
- - GNU GDB.
+The same for running the program.
 
 ### Running tests
 
