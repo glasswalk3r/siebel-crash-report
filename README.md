@@ -128,8 +128,3 @@ The same for running the program.
 
 In order to run tests with `pytest`, setup the `PYTHONPATH` environment
 variable first:
-
-```
-$ export PYTHONPATH="$PWD/src"
-$ pytest
-```
