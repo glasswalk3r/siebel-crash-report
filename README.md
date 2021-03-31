@@ -25,7 +25,7 @@ it's to run it together in a cron job and pipe it to `mail` program.
 
 Here is an example of the JSON report (two crashes identified):
 
-```javascript
+```json
 {
 	18192 : {
 		'core' : {
@@ -84,7 +84,7 @@ $ pydoc -w siebel.maintenance.crash
 
 ### Requirements
 
- - Python 2.X or 3.x: checkout
+ - Python 3.x: checkout
  [Travis CI](https://travis-ci.org/glasswalk3r/siebel-crash-report/branches) for
  up to date information about the support Python versions.
  - Siebel Server binaries and configuration in place.
@@ -112,19 +112,33 @@ You can see a sample configuration file at the website project.
 Further information can be checked on the module documentation:
 
 ```
-$ pydoc siebel.maintenance.crash.readConfig
+pydoc siebel.maintenance.crash.readConfig
 ```
 
 ## Development
 
-If you want to get involved with this project development, here are some very
-basic details to start.
+If you want to get involved with this project development, first install the
+Python development requirements with:
 
-### Requirements
+```
+pip install -r requirements-dev.txt
+```
 
-The same for running the program.
+You will also need to install the GNU Make in order to be able to use this
+project `Makefile` for serveral tasks, like running the unit tests for example:
 
-### Running tests
+```
+siebel-crash-report$ make test
+pytest -v
+==================================================================================== test session starts =====================================================================================
+platform linux -- Python 3.6.13, pytest-6.2.2, py-1.10.0, pluggy-0.13.1 -- /home/alceu/.pyenv/versions/3.6.13/envs/siebel-crash-report/bin/python3.6
+cachedir: .pytest_cache
+rootdir: siebel-crash-report
+collected 3 items
 
-In order to run tests with `pytest`, setup the `PYTHONPATH` environment
-variable first:
+tests/siebel/maintenance/test_thread.py::test_fix_thread_id PASSED                                                                                                                     [ 33%]
+tests/siebel/maintenance/test_thread.py::test_dec2bin PASSED                                                                                                                           [ 66%]
+tests/siebel/maintenance/test_thread.py::test_dec2bin_backport PASSED                                                                                                                  [100%]
+
+===================================================================================== 3 passed in 0.06s ======================================================================================
+```
