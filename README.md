@@ -25,7 +25,7 @@ it's to run it together in a cron job and pipe it to `mail` program.
 
 Here is an example of the JSON report (two crashes identified):
 
-```json
+```javascript
 {
 	18192 : {
 		'core' : {
