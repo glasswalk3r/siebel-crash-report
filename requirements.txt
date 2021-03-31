@@ -1,2 +1,2 @@
-pytest
-pyyaml
+PyYAML>=5.4
+simplejson>=3.17.2
