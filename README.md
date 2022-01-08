@@ -84,9 +84,8 @@ $ pydoc -w siebel.maintenance.crash
 
 ### Requirements
 
- - Python 3.x: checkout
- [Travis CI](https://travis-ci.com/glasswalk3r/siebel-crash-report/branches) for
- up to date information about the support Python versions.
+ - Python 3.x: see `setup.py` for up to date information about the support
+Python versions.
  - Siebel Server binaries and configuration in place.
  - Linux (all setup is specific to Linux).
  - GNU GDB.
