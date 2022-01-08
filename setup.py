@@ -7,7 +7,7 @@ requirements = ['PyYAML>=5.4', 'simplejson>=3.17.2']
 
 setup(
     name="siebel-crash-report",
-    version="0.0.2",
+    version='0.0.2',
     author="Alceu Rodrigues de Freitas Junior",
     author_email="arfreitas@cpan.org",
     url="https://github.com/glasswalk3r/siebel-crash-report",
