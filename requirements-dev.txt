@@ -2,3 +2,5 @@
 
 pytest>=6.2.3
 flake8
+pip-audit==1.1.1
+bump2version==1.0.1

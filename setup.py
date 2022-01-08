@@ -3,11 +3,13 @@ from setuptools import setup, find_packages
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
+requirements = ['PyYAML>=5.4', 'simplejson>=3.17.2']
+
 setup(
     name="siebel-crash-report",
     version="0.0.2",
     author="Alceu Rodrigues de Freitas Junior",
-    author_email="glasswalk3r@yahoo.com.br",
+    author_email="arfreitas@cpan.org",
     url="https://github.com/glasswalk3r/siebel-crash-report",
     packages=find_packages('src'),
     package_dir={'': 'src'},
