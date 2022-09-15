@@ -124,7 +124,7 @@ pip install -r requirements-dev.txt
 ```
 
 You will also need to install the GNU Make in order to be able to use this
-project `Makefile` for serveral tasks, like running the unit tests for example:
+project `Makefile` for several tasks, like running the unit tests:
 
 ```
 siebel-crash-report$ make test
