@@ -9,7 +9,7 @@ component crash to send the report to Oracle support.
 
 Information is searched and retrieve from the following sources:
 
-- the memory dump (`core.dump` files) itself using GDB.
+- the memory dump (`core.dump` files) itself using the GDB.
 - FDR files with `sarmanalyzer`.
 - Siebel enterprise log files.
 - correlate information from the FDR with the enterprise log file.
@@ -21,9 +21,10 @@ necessary in the directory defined by the `crash_dir` entry in the
 and a copy of the `crash.txt`.
 
 All the information (but the CSV and `gdb` output) is printed to `STDOUT`, so
-it's to run it together in a cron job and pipe it to `mail` program.
+it is possible to run it together within cron job and pipe it to `mail`
+program.
 
-Here is an example of the JSON report (two crashes identified):
+Here is an example of the JSON report, where two crashes were registered:
 
 ```javascript
 {
@@ -61,11 +62,12 @@ Here is an example of the JSON report (two crashes identified):
 ```
 
 The core and FDR files might be removed (see the configuration file) right after
-the analysis is complete.
+the data retrieval is completed.
 
 This script will work on Linux only. It is expected that the `gdb` program (to
 extract the core dumps backtrace) and the `iniparse` (available as RPM package
-on RedHat, CentOS and Oracle Enterprise Linux) Python module are installed.
+on RedHat, CentOS and Oracle Enterprise Linux) Python module are installed as
+well.
 
 The script `crash_monitor` has also an on-line documentation. You can check it
 with:
@@ -84,8 +86,8 @@ $ pydoc -w siebel.maintenance.crash
 
 ### Requirements
 
- - Python 3.x: see `setup.py` for up to date information about the support
-Python versions.
+ - Python 3.x: see `setup.py` for up to date information about the supported
+ Python versions.
  - Siebel Server binaries and configuration in place.
  - Linux (all setup is specific to Linux).
  - GNU GDB.
