@@ -1,4 +1,7 @@
 # siebel-crash-report
+
+[![Python application](https://github.com/glasswalk3r/siebel-crash-report/actions/workflows/python-app.yml/badge.svg)](https://github.com/glasswalk3r/siebel-crash-report/actions/workflows/python-app.yml)
+
 Python project that searchs and aggregates Siebel component crashes information
 into a nice report.
 
