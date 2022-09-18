@@ -195,7 +195,7 @@ def find_logs(log_dir, regex, crash_dir, pid, thread_num):
                 # file header checking
                 header_fields = header.split(' ')
 
-                if (not(len(header_fields) >= 19)):
+                if (not (len(header_fields) >= 19)):
                     print('%s does not have a valid header line: "%s"' % (
                         log_filename, header))
                 else:
