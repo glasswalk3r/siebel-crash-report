@@ -47,3 +47,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Searchs for know vulnerabities
+      uses: pypa/gh-action-pip-audit@v1.0.0
+      with:
+        inputs: requirements.txt
