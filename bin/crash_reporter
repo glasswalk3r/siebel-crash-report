@@ -15,24 +15,10 @@ from siebel.maintenance.crash import find_logs, find_last
 from siebel.maintenance.crash import signal_map, readConfig
 
 """
-Script to search for Siebel Server crash files and generate a report to help to
-identify the problem.
-If any is found, it will execute all the require steps to retrieve information
-from the core dumps, FDR, crash file and related log files to generate a
-complete information about the crash. A summary with the information is
-generated as a JSON to STDOUT.
-The core and FDR files might be removed right after (see the configuration
-file).
-This script will work on Linux only. It is expected that the gdb program is
-also available (to extract the core dumps backtrace).
-To generate HTML documentation for this module issue the command:
-    pydoc -w crash_monitor
-
-
 COPYRIGHT AND LICENSE
 
 This software is copyright (c) 2012 of Alceu Rodrigues de Freitas Junior,
-glasswalk3r@yahoo.com.br.
+arfreitas@cpan.org.
 
 This file is part of siebel-crash-report.
 
