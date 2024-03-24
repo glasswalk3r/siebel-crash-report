@@ -1,6 +1,6 @@
 -r requirements.txt
 
-pytest
+pytest >= 8.1.1
 flake8
 pip-audit
 bump2version
